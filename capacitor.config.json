@@ -1,6 +1,6 @@
 {
-    "appId": "io.ionic.starter",
-    "appName": "les-sagas-mp3",
+    "appId": "fr.lessagasmp3.app",
+    "appName": "Les Sagas MP3",
     "bundledWebRuntime": false,
     "npmClient": "npm",
     "webDir": "www",

@@ -16,15 +16,15 @@ export class ListNewsPage implements OnInit {
     private rssMessageService: RssMessageService) { }
 
   ngOnInit() {
-      this.loadingController.create({
-        message: 'Téléchargement...'
-      }).then((res) => {
-        res.present();
-        this.rssMessageService.getByFeedTitle('Nouveautés')
-          .subscribe(data => {
-            this.items = data;
-            res.dismiss();
-          });
-      });
+    this.loadingController.create({
+      message: 'Téléchargement...'
+    }).then((res) => {
+      res.present();
+      this.rssMessageService.getByFeedTitle('Nouveautés')
+        .subscribe(data => {
+          this.items = data;
+          res.dismiss();
+        });
+    });
   }
 }
