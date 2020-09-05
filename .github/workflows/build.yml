@@ -38,7 +38,7 @@ jobs:
           java-version: 1.8
 
       - name: Sync Ionic with Android
-        run: npm i -g @ionic/cli && ionic cap sync
+        run: npm i @ionic/cli && ionic cap sync
 
       - name: Build Debug APK
         run: cd android && bash ./gradlew :app:assembleDebug
