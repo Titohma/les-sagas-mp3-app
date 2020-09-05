@@ -38,12 +38,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install node modules
-        run: npm install
+        run: npm install && npm run build
 
       - name: Use coturiv/setup-ionic
         uses: coturiv/setup-ionic@v1
         with:
-          ionic-version: 6
+          ionic-version: 6.11.8
 
       - name: Copy assets to Android
         run: ionic cap copy
