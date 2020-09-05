@@ -45,6 +45,9 @@ jobs:
         with:
           ionic-version: 6
 
+      - name: Copy assets to Android
+        run: ionic cap copy
+
       - name: Sync Ionic with Android
         run: ionic cap sync
 
