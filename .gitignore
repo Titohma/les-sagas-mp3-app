@@ -29,6 +29,3 @@ npm-debug.log*
 /platforms
 /plugins
 /www
-
-# Custom capacitor
-capacitor.config.json
