@@ -30,11 +30,11 @@ jobs:
       id: get_version
       run: "echo ::set-output name=VERSION::$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')"
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --build-arg configuration=heroku-fr --tag docker.pkg.github.com/les-sagas-mp3/app/web:heroku-${{ steps.get_version.outputs.VERSION }}
+      run: docker build . --file Dockerfile --build-arg configuration=heroku-fr --tag docker.pkg.github.com/les-sagas-mp3/app/app:heroku-${{ steps.get_version.outputs.VERSION }}
     - name: Login to Registry
       run: docker login docker.pkg.github.com -u thomah -p ${{secrets.GITHUB_TOKEN}}
     - name: Publish to Registry
-      run: docker push docker.pkg.github.com/les-sagas-mp3/app/web:heroku-${{ steps.get_version.outputs.VERSION }}
+      run: docker push docker.pkg.github.com/les-sagas-mp3/app/app:heroku-${{ steps.get_version.outputs.VERSION }}
 
   deploy-heroku:
     needs: publish-docker
@@ -48,9 +48,9 @@ jobs:
     - name: Login to Registry
       run: docker login docker.pkg.github.com -u thomah -p ${{secrets.GITHUB_TOKEN}}
     - name: Pull Docker Image
-      run: docker pull docker.pkg.github.com/les-sagas-mp3/app/web:heroku-${{ steps.get_version.outputs.VERSION }}
+      run: docker pull docker.pkg.github.com/les-sagas-mp3/app/app:heroku-${{ steps.get_version.outputs.VERSION }}
     - name: Tag the image
-      run: docker tag docker.pkg.github.com/les-sagas-mp3/app/web:heroku-${{ steps.get_version.outputs.VERSION }} registry.heroku.com/les-sagas-mp3/web
+      run: docker tag docker.pkg.github.com/les-sagas-mp3/app/app:heroku-${{ steps.get_version.outputs.VERSION }} registry.heroku.com/les-sagas-mp3/app
     - name: Get Heroku Tools
       run: wget -qO- https://toolbelt.heroku.com/install.sh | sh
     - name: Login to Heroku Registry
@@ -60,7 +60,7 @@ jobs:
       env:
         HEROKU_API_KEY: ${{secrets.HEROKU_PASSWORD}}
     - name: Publish to Heroku Registry
-      run: docker push registry.heroku.com/les-sagas-mp3/web
+      run: docker push registry.heroku.com/les-sagas-mp3/app
     - name: Release Heroku app
       run: heroku container:release web --app les-sagas-mp3
       env:
