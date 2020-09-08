@@ -77,13 +77,15 @@ jobs:
         run: echo "RELEASE_STORE_FILE=${{ github.workspace }}/android/keystore.jks" > key.properties
       - name: Add other signing properties to Gradle
         run: echo "${{ secrets.ANDROID_SIGNING_PROPERTIES }}" > key.properties
-      - name: Build Debug APK
+      - name: Build APK
         run: cd android && bash ./gradlew :app:assembleRelease
-      - name: Upload APK
+      - name: Debug
+        run: ls -all ${{ github.workspace }}/android/app/build/outputs/apk/release
+      - name: Upload APK as artifact
         uses: actions/upload-artifact@v2
         with:
           name: App
-          path: ${{ github.workspace }}/android/app/build/outputs/apk/release/app-release-unsigned.apk
+          path: ${{ github.workspace }}/android/app/build/outputs/apk/release/app-release.apk
 
   release:
     needs: [verify-version, build, build-android]
@@ -137,8 +139,10 @@ jobs:
         run: echo "RELEASE_STORE_FILE=${{ github.workspace }}/android/keystore.jks" > key.properties
       - name: Add other signing properties to Gradle
         run: echo "${{ secrets.ANDROID_SIGNING_PROPERTIES }}" > key.properties
-      - name: Build Debug APK
+      - name: Build APK
         run: cd android && bash ./gradlew :app:assembleRelease
+      - name: Debug
+        run: ls -all ${{ github.workspace }}/android/app/build/outputs/apk/release
       - name: Upload APK
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
@@ -146,7 +150,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/android/app/build/outputs/apk/release/app-release-unsigned.apk
+          asset_path: ${{ github.workspace }}/android/app/build/outputs/apk/release/app-release.apk
           asset_name: les-sagas-mp3.apk
           asset_content_type: application/vnd.android.package-archive
 
