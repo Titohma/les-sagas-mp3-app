@@ -70,7 +70,7 @@ jobs:
       - name: Set public key
         run: echo "${{ secrets.ANDROID_SIGNING_KEY_PUB }}" > android-signing-key.pem
       - name: Create PKCS12 Keystore
-        run: openssl pkcs12 -export -in android-signing-key.pem -inkey android-signing-key.key -name "lessagasmp3" -out keystore.p12
+        run: openssl pkcs12 -export -in android-signing-key.pem -inkey android-signing-key.key -name "lessagasmp3" -out keystore.p12 -password pass:${{ secrets.ANDROID_SIGNING_KEYSTORE_PASS }}
       - name: Convert to JKS Keystore
         run: keytool -importkeystore -deststorepass ${{ secrets.ANDROID_SIGNING_KEYSTORE_PASS }} -destkeystore keystore.jks -srckeystore keystore.p12 -srcstoretype PKCS12 -deststoretype JKS
       - name: Add keystore path to Gradle
@@ -130,7 +130,7 @@ jobs:
       - name: Set public key
         run: echo "${{ secrets.ANDROID_SIGNING_KEY_PUB }}" > android-signing-key.pem
       - name: Create PKCS12 Keystore
-        run: openssl pkcs12 -export -in android-signing-key.pem -inkey android-signing-key.key -name "lessagasmp3" -out keystore.p12
+        run: openssl pkcs12 -export -in android-signing-key.pem -inkey android-signing-key.key -name "lessagasmp3" -out keystore.p12 -password pass:${{ secrets.ANDROID_SIGNING_KEYSTORE_PASS }}
       - name: Convert to JKS Keystore
         run: keytool -importkeystore -deststorepass ${{ secrets.ANDROID_SIGNING_KEYSTORE_PASS }} -destkeystore keystore.jks -srckeystore keystore.p12 -srcstoretype PKCS12 -deststoretype JKS
       - name: Add keystore path to Gradle
