@@ -74,7 +74,7 @@ jobs:
       - name: Convert to JKS Keystore
         run: keytool -importkeystore -deststorepass ${{ secrets.ANDROID_SIGNING_KEYSTORE_PASS }} -destkeystore keystore.jks -deststoretype JKS -srcstorepass ${{ secrets.ANDROID_SIGNING_KEYSTORE_PASS }} -srckeystore keystore.p12 -srcstoretype PKCS12
       - name: Add keystore path to Gradle
-        run: echo "RELEASE_STORE_FILE=${{ github.workspace }}/android/keystore.jks" > android/key.properties
+        run: echo "RELEASE_STORE_FILE=${{ github.workspace }}/keystore.jks" > android/key.properties
       - name: Add other signing properties to Gradle
         run: echo "${{ secrets.ANDROID_SIGNING_PROPERTIES }}" >> android/key.properties
       - name: Build APK
@@ -136,7 +136,7 @@ jobs:
       - name: Convert to JKS Keystore
         run: keytool -importkeystore -deststorepass ${{ secrets.ANDROID_SIGNING_KEYSTORE_PASS }} -destkeystore keystore.jks -deststoretype JKS -srcstorepass ${{ secrets.ANDROID_SIGNING_KEYSTORE_PASS }} -srckeystore keystore.p12 -srcstoretype PKCS12
       - name: Add keystore path to Gradle
-        run: echo "RELEASE_STORE_FILE=${{ github.workspace }}/android/keystore.jks" > android/key.properties
+        run: echo "RELEASE_STORE_FILE=${{ github.workspace }}/keystore.jks" > android/key.properties
       - name: Add other signing properties to Gradle
         run: echo "${{ secrets.ANDROID_SIGNING_PROPERTIES }}" >> android/key.properties
       - name: Build APK
