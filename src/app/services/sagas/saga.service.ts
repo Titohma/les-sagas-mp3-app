@@ -12,7 +12,7 @@ export class SagaService {
   constructor(private http: HttpClient) { }
   
   getAll() : Observable<SagaModel[]> {
-    return this.http.get<SagaModel[]>(`${environment.apiUrl}/sagas`);
+    return this.http.get<SagaModel[]>(`${environment.apiUrl}/saga`);
   }
 
 }

@@ -22,12 +22,12 @@ export class ViewNewsPage implements OnInit {
     var itemId: number = +this.activatedRoute.snapshot.paramMap.get('id');
     this.loadingController.create({
       message: 'Téléchargement...'
-    }).then((res) => {
-      res.present();
+    }).then((loading) => {
+      loading.present();
       this.rssMessageService.getById(itemId)
         .subscribe(data => {
           this.item = data;
-          res.dismiss();
+          loading.dismiss();
         });
     });
   }

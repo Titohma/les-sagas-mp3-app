@@ -12,5 +12,6 @@ export class SagaModel extends AuditModel {
     nbBravos: number = 0;
     authorsRef: number[] = [];
     categoriesRef: number[] = [];
+    seasonsRef: number[] = [];
 
 }
