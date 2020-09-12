@@ -23,8 +23,8 @@ export class ListSagasPage implements OnInit {
   ngOnInit() {
       this.loadingController.create({
         message: 'Téléchargement...'
-      }).then((res) => {
-        res.present();
+      }).then((loading) => {
+        loading.present();
         forkJoin(this.categoryService.getAll(), this.sagaService.getAll())
         .subscribe(results => {
           this.items = results[1];
@@ -34,7 +34,7 @@ export class ListSagasPage implements OnInit {
               item.categories.push(results[0].find(result => result.id === categoryRef));
             });
           });
-          res.dismiss();
+          loading.dismiss();
         });
       });
 
