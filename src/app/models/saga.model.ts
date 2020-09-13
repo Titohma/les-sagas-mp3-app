@@ -3,6 +3,8 @@ import { AuditModel } from './audit.model';
 export class SagaModel extends AuditModel {
 
     title: string = '';
+    backgroundUrl: string = '';
+    coverUrl: string = '';
     url: string = '';
     urlWiki: string = '';
     levelArt: number = 100;

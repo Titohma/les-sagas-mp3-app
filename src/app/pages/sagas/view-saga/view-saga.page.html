@@ -1,0 +1,79 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{ item.title }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="background" [ngStyle]="{'background-image': backgroundImage()}">
+        <div class="background-left-buttons">
+            <ion-button *ngIf="item.url" color="light" href="{{ item.url }}">
+                <ion-icon slot="start" name="globe"></ion-icon>
+                Site
+            </ion-button>
+            <ion-button *ngIf="item.urlWiki" color="light" href="{{ item.urlWiki }}">
+                <ion-icon slot="start" name="globe"></ion-icon>
+                Wiki
+            </ion-button>
+        </div>
+        <ion-img class="cover" [src]="item.coverUrl"></ion-img>
+    </div>
+    <ion-list>
+        <ion-item lines="none">
+            <ion-icon slot="start" name="person"></ion-icon>
+            <span *ngFor="let author of item.authors; let isLast=last">
+                {{ author.name }}{{isLast ? '' : ', '}}
+            </span>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-icon slot="start" name="bookmarks"></ion-icon>
+            <ion-badge *ngFor="let category of item.categories" class="categoryBadge" color="medium">
+                {{ category.name }}
+            </ion-badge>
+        </ion-item>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="4">
+                    <ion-item>
+                        <ion-icon class="icon-center" name="color-palette"></ion-icon>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-item>
+                        <ion-icon class="icon-center" name="construct"></ion-icon>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-item>
+                        <ion-icon class="icon-center" name="thumbs-up"></ion-icon>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="ion-text-center" size="4">
+                    {{ item.levelArt * 100 / 200 }} %
+                </ion-col>
+                <ion-col class="ion-text-center" size="4">
+                    {{ item.levelTech * 100 / 200 }} %
+                </ion-col>
+                <ion-col class="ion-text-center" size="4">
+                    {{ item.nbBravos }}
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <div *ngIf="item.seasonsRef.length > 0">
+            <ion-list-header>
+                <ion-label>Saisons</ion-label>
+            </ion-list-header>
+            <ion-item>
+                {{ item.seasonsRef }}
+            </ion-item>
+        </div>
+    </ion-list>
+
+</ion-content>
