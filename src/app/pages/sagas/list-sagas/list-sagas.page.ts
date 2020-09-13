@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { SagaModel } from 'src/app/models/saga.model';
 import { SagaService } from 'src/app/services/sagas/saga.service';
 import { forkJoin } from 'rxjs';
-import { CategoryModel } from 'src/app/models/category.model';
 import { CategoryService } from 'src/app/services/categories/category.service';
 
 @Component({

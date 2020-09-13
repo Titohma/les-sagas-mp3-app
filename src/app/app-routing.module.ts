@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/sagas/list-sagas/list-sagas.module').then( m => m.ListSagasPageModule)
   },
   {
+    path: 'sagas/:id',
+    loadChildren: () => import('./pages/sagas/view-saga/view-saga.module').then( m => m.ViewSagaPageModule)
+  },
+  {
     path: 'news',
     loadChildren: () => import('./pages/news/list-news/list-news.module').then( m => m.ListNewsPageModule)
   },
