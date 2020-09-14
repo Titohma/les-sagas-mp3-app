@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
+import { Category } from 'src/app/entities/category';
 import { Saga } from 'src/app/entities/saga';
 import { AuthorService } from 'src/app/services/authors/author.service';
 import { CategoryService } from 'src/app/services/categories/category.service';
@@ -36,7 +37,7 @@ export class ViewSagaPage implements OnInit {
           let authors = this.authorService.getAllByIds(data.authorsRef);
           forkJoin([authors, categories]).subscribe(results => {
             this.item.authors = results[0];
-            this.item.categories = results[1];
+            this.item.categories = Category.fromModels(results[1]);
             loading.dismiss();
           });
         });

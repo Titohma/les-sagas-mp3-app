@@ -4,7 +4,6 @@ import { Category } from './category';
 import { Season } from './season';
 
 export class Saga extends SagaModel {
-
     authors: Author[] = []
     categories: Category[] = []
     seasons: Season[] = []
@@ -27,8 +26,15 @@ export class Saga extends SagaModel {
         entity.urlReviews = model.urlReviews;
         entity.nbBravos = model.nbBravos;
         entity.authorsRef = model.authorsRef;
-        entity.categoriesRef = entity.categoriesRef;
-        entity.seasonsRef = entity.seasonsRef;
+        entity.categoriesRef = model.categoriesRef;
+        entity.seasonsRef = model.seasonsRef;
         return entity;
     }
+
+    static fromModels(models: SagaModel[]): Saga[] {
+        var entities: Saga[] = [];
+        models.forEach(model => entities.push(this.fromModel(model)));
+        return entities;
+    }
+
 }
