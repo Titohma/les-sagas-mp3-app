@@ -7,6 +7,10 @@
     </ion-toolbar>
 </ion-header>
 
+<ion-toolbar>
+    <ion-searchbar showCancelButton="focus" placeholder="Chercher une saga" (ionChange)="search($event.target.value)" (ionCancel)="cancelSearch()"></ion-searchbar>
+</ion-toolbar>
+
 <ion-content>
     <ion-list>
         <ion-item *ngFor="let saga of items" routerLink="/sagas/{{ saga.id }}" routerDirection="forward">

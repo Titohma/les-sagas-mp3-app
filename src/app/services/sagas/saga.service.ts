@@ -18,5 +18,8 @@ export class SagaService {
     return this.http.get<SagaModel>(`${environment.apiUrl}/saga/${id}`);
   }
   
+  search(search: string): Observable<SagaModel[]> {
+    return this.http.get<SagaModel[]>(`${environment.apiUrl}/saga?search=${search}`);
+  }
 
 }
