@@ -114,6 +114,10 @@ ion-item.selected {
     --color: var(--ion-color-primary);
 }
 
+#side_menu {
+    padding-top: 0;
+}
+
 #login_button {
     position: absolute;
     bottom: 0;
