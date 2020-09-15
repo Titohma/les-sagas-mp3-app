@@ -15,6 +15,8 @@ export class ListSagasPage implements OnInit {
 
   public categories: Category[] = [];
   public items: Saga[] = [];
+  public isSearchRunning: boolean = false;
+  private numPage: number = 0;
 
   constructor(
     public loadingController: LoadingController,
@@ -27,11 +29,11 @@ export class ListSagasPage implements OnInit {
     }).then((loading) => {
       loading.present();
       let categoriesRequest = this.categoryService.getAll();
-      let authorsRequest = this.sagaService.getAll();
+      let authorsRequest = this.sagaService.getPaginated(this.numPage, 20);
       forkJoin([categoriesRequest, authorsRequest]).subscribe(results => {
-        this.items = Saga.fromModels(results[1]);
+        this.items = Saga.fromModels(results[1].content);
         this.categories = Category.fromModels(results[0]);
-        this.saveCategories();
+        this.items = this.saveCategories(this.items);
         loading.dismiss();
       });
     });
@@ -39,29 +41,46 @@ export class ListSagasPage implements OnInit {
 
   search(searchInput) {
     if(searchInput.length > 2) {
+      this.isSearchRunning = true;
       this.sagaService.search(searchInput)
         .subscribe(res => {
           this.items = Saga.fromModels(res);
-          this.saveCategories();
+          this.items = this.saveCategories(this.items);
         });
     }
   }
 
   cancelSearch() {
-    this.sagaService.getAll()
-    .subscribe(res => {
-      this.items = Saga.fromModels(res);
-      this.saveCategories();
-    });
+    this.isSearchRunning = false;
+    this.sagaService.getPaginated(this.numPage, 20)
+      .subscribe(res => {
+        this.items = Saga.fromModels(res.content);
+        this.items = this.saveCategories(this.items);
+      });
   }
 
-  private saveCategories() {
-    this.items.forEach(item => {
+  loadData(event) {
+    this.numPage++;
+    this.sagaService.getPaginated(this.numPage, 20)
+      .subscribe(res => {
+        var sagas = Saga.fromModels(res.content);
+        sagas = this.saveCategories(sagas);
+        sagas.forEach(saga => this.items.push(saga));
+        event.target.complete();
+        if(this.numPage == res.totalPages) {
+          event.target.disabled = true;
+        }
+      });
+  }
+
+  private saveCategories(items: Saga[]) {
+    items.forEach(item => {
       item.categories = []
       item.categoriesRef.forEach(categoryRef => {
         item.categories.push(this.categories.find(result => result.id === categoryRef));
       });
     });
+    return items;
   }
 
 }

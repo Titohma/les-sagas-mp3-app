@@ -2,8 +2,13 @@
     <ion-split-pane contentId="main-content">
         <ion-menu contentId="main-content" type="overlay">
             <ion-content>
-                <ion-list>
-                    <ion-list-header *ngIf="authService.currentTokenValue">Compte : {{ authService.currentUserValue.username }}</ion-list-header>
+                <ion-list id="side_menu">
+                    <ion-avatar *ngIf="authService.currentTokenValue">
+                        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                    </ion-avatar>
+                    <ion-list-header *ngIf="authService.currentTokenValue">
+                        Compte : {{ authService.currentUserValue.username }}
+                    </ion-list-header>
 
                     <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
                         <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
@@ -11,6 +16,14 @@
                             <ion-label>{{ p.title }}</ion-label>
                         </ion-item>
                     </ion-menu-toggle>
+
+                    <ion-menu-toggle *ngIf="authService.currentTokenValue" auto-hide="false">
+                        <ion-item (click)="selectedIndex = -2" routerDirection="root" routerLink="sync" lines="none" detail="false" [class.selected]="selectedIndex == -2">
+                            <ion-icon slot="start" name="cog"></ion-icon>
+                            <ion-label>Administration</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+
                     <ion-menu-toggle id="login_button" auto-hide="false">
                         <ion-item *ngIf="!authService.currentTokenValue" (click)="selectedIndex = -1" routerDirection="root" routerLink="/login" lines="none" detail="false" [class.selected]="selectedIndex == -1">
                             <ion-icon slot="start" name="person-circle"></ion-icon>
