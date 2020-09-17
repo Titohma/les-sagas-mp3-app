@@ -60,7 +60,7 @@ jobs:
       env:
         HEROKU_API_KEY: ${{secrets.HEROKU_PASSWORD}}
     - name: Publish to Heroku Registry
-      run: docker push registry.heroku.com/les-sagas-mp3/app
+      run: docker push registry.heroku.com/les-sagas-mp3/web
     - name: Release Heroku app
       run: heroku container:release web --app les-sagas-mp3
       env:
