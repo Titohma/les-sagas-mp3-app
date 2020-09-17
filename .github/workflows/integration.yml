@@ -50,7 +50,7 @@ jobs:
     - name: Pull Docker Image
       run: docker pull docker.pkg.github.com/les-sagas-mp3/app/app:heroku-${{ steps.get_version.outputs.VERSION }}
     - name: Tag the image
-      run: docker tag docker.pkg.github.com/les-sagas-mp3/app/app:heroku-${{ steps.get_version.outputs.VERSION }} registry.heroku.com/les-sagas-mp3/app
+      run: docker tag docker.pkg.github.com/les-sagas-mp3/app/app:heroku-${{ steps.get_version.outputs.VERSION }} registry.heroku.com/les-sagas-mp3/web
     - name: Get Heroku Tools
       run: wget -qO- https://toolbelt.heroku.com/install.sh | sh
     - name: Login to Heroku Registry
