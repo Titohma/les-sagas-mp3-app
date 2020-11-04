@@ -17,6 +17,7 @@ export class ListSagasPage implements OnInit {
   public items: Saga[] = [];
   public isSearchRunning: boolean = false;
   private numPage: number = 0;
+  private sizePage: number = 30;
 
   constructor(
     public loadingController: LoadingController,
@@ -29,7 +30,7 @@ export class ListSagasPage implements OnInit {
     }).then((loading) => {
       loading.present();
       let categoriesRequest = this.categoryService.getAll();
-      let authorsRequest = this.sagaService.getPaginated(this.numPage, 20);
+      let authorsRequest = this.sagaService.getPaginated(this.numPage, this.sizePage);
       forkJoin([categoriesRequest, authorsRequest]).subscribe(results => {
         this.items = Saga.fromModels(results[1].content);
         this.categories = Category.fromModels(results[0]);
@@ -52,7 +53,7 @@ export class ListSagasPage implements OnInit {
 
   cancelSearch() {
     this.isSearchRunning = false;
-    this.sagaService.getPaginated(this.numPage, 20)
+    this.sagaService.getPaginated(this.numPage, this.sizePage)
       .subscribe(res => {
         this.items = Saga.fromModels(res.content);
         this.items = this.saveCategories(this.items);
@@ -61,7 +62,7 @@ export class ListSagasPage implements OnInit {
 
   loadData(event) {
     this.numPage++;
-    this.sagaService.getPaginated(this.numPage, 20)
+    this.sagaService.getPaginated(this.numPage, this.sizePage)
       .subscribe(res => {
         var sagas = Saga.fromModels(res.content);
         sagas = this.saveCategories(sagas);
