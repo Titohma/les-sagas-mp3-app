@@ -1,7 +1,7 @@
 {
     "name": "les-sagas-mp3",
     "version": "0.2.1",
-    "author": "Les SagasMP3",
+    "author": "Les Sagas MP3",
     "homepage": "https://github.com/Les-Sagas-MP3",
     "scripts": {
         "ng": "ng",
