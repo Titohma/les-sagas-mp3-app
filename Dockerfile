@@ -1,4 +1,4 @@
-FROM node:12.8.1-stretch as builder
+FROM node:14-stretch as builder
 
 ARG configuration
 
@@ -8,7 +8,7 @@ WORKDIR /ng-app
 COPY . .
 RUN npm i -g @ionic/cli && ionic build -- --configuration $configuration --output-path=dist
 
-FROM nginx:1.17.3
+FROM nginx:1.21.0
 
 ARG configuration
 
