@@ -159,7 +159,7 @@ jobs:
     - name: Login to Docker Hub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Publish to Docker Hub
-      run: docker push lessagasmp3/app:heroku-${{ steps.get_version.outputs.VERSION }}
+      run: docker push lessagasmp3/app:heroku-${{ needs.verify-version.outputs.version }}
 
   deploy-production:
     needs: [verify-version, release]
