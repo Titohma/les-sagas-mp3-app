@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -14,6 +14,13 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { CategoryService } from './services/categories/category.service';
 import { RssMessageService } from './services/rss.message/rss.message.service';
 import { SagaService } from './services/sagas/saga.service';
+import { ConfigService } from './services/config/config.service';
+
+const appConfig = (config: ConfigService) => {
+  return () => {
+    return config.loadConfig();
+  };
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +40,14 @@ import { SagaService } from './services/sagas/saga.service';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     CategoryService,
     RssMessageService,
-    SagaService
+    SagaService,
+    ConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appConfig,
+      multi: true,
+      deps: [ConfigService],
+    },
   ],
   bootstrap: [AppComponent]
 })

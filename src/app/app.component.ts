@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ActionPerformed, PushNotificationSchema, PushNotifications, Token } from '@capacitor/push-notifications';
 
 import { AuthService } from './services/auth/auth.service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-root',
@@ -50,8 +51,13 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.url === path);
     }
+    if (Capacitor.isPluginAvailable('PushNotifications')) {
+      this.initPushNotifications();
+    }
 
-    console.log('Initializing HomePage');
+  }
+
+  initPushNotifications() {
 
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
