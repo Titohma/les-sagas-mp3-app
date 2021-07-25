@@ -1,13 +1,13 @@
 {
-    "appId": "fr.lessagasmp3.app",
-    "appName": "Les Sagas MP3",
-    "bundledWebRuntime": false,
-    "npmClient": "npm",
-    "webDir": "www",
-    "plugins": {
-        "SplashScreen": {
-            "launchShowDuration": 0
-        }
-    },
-    "cordova": {}
+	"appId": "fr.lessagasmp3.app",
+	"appName": "Les Sagas MP3",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "www",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0
+		}
+	},
+	"cordova": {}
 }
