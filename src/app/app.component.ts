@@ -3,7 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ActionPerformed, PushNotificationSchema, PushNotifications, Token } from '@capacitor/push-notifications';
+
 import { AuthService } from './services/auth/auth.service';
+import { Capacitor } from '@capacitor/core';
+import { FcmService } from './services/fcm/fcm.service';
 
 @Component({
   selector: 'app-root',
@@ -24,12 +28,13 @@ export class AppComponent implements OnInit {
       icon: 'list'
     }
   ];
-  
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public authService: AuthService
+    public authService: AuthService,
+    private fcmService: FcmService
   ) {
     this.initializeApp();
   }
@@ -38,16 +43,18 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.fcmService.initPush();
     });
   }
 
   ngOnInit() {
     this.authService.whoami();
     const split = window.location.pathname.split('/');
-    const path = `${split[0]}/${split[1]}` ;
+    const path = `${split[0]}/${split[1]}`;
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.url === path);
     }
+
   }
 
   logout() {

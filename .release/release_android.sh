@@ -1,11 +1,19 @@
 #!/bin/sh
 
 # To execute this script, we need the following environment variables
-# WORKSPACE : location of a this repository's clone
+# WORKSPACE : location of this repository's clone
 # GPG_DECRYPT_PASSPHRASE : the passphrase used to encrypt *.gpg files
 # ANDROID_SIGNING_KEYSTORE_PASS : the password used for the keystore
 
 SCRIPT_LOCATION=$WORKSPACE/.release/
+
+# Set asset file
+echo '''
+{
+    "webUrl": "http://localhost:8100",
+    "apiUrl": "https://1ac478f74140.ngrok.io/api"
+}
+''' > $WORKSPACE/android/app/src/main/assets/public/assets/config.json
 
 # Decrypt secret files
 gpg --quiet --batch --yes --decrypt --passphrase="$GPG_DECRYPT_PASSPHRASE" --output $SCRIPT_LOCATION/android-signing.key $SCRIPT_LOCATION/android-signing.key.gpg

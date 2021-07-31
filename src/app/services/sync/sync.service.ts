@@ -1,19 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { ConfigService } from '../config/config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SyncService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private configService: ConfigService) { }
 
   syncNews() {
-    return this.http.post<any>(`${environment.apiUrl}/sync/news`, {});
+    return this.http.post<any>(`${this.configService.get('apiUrl')}/sync/news`, {});
   }
 
   syncSagas() {
-    return this.http.post<any>(`${environment.apiUrl}/sync/sagas`, {});
+    return this.http.post<any>(`${this.configService.get('apiUrl')}/sync/sagas`, {});
   }
 }
