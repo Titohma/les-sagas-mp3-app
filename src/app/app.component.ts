@@ -7,6 +7,7 @@ import { ActionPerformed, PushNotificationSchema, PushNotifications, Token } fro
 
 import { AuthService } from './services/auth/auth.service';
 import { Capacitor } from '@capacitor/core';
+import { FcmService } from './services/fcm/fcm.service';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +33,8 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public authService: AuthService
+    private authService: AuthService,
+    private fcmService: FcmService
   ) {
     this.initializeApp();
   }
@@ -41,6 +43,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.fcmService.initPush();
     });
   }
 
@@ -51,53 +54,7 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.url === path);
     }
-    if (Capacitor.isPluginAvailable('PushNotifications')) {
-      this.initPushNotifications();
-    }
 
-  }
-
-  initPushNotifications() {
-
-    // Request permission to use push notifications
-    // iOS will prompt user and return if they granted permission or not
-    // Android will just grant without prompting
-    PushNotifications.requestPermissions().then(result => {
-      if (result.receive === 'granted') {
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register();
-      } else {
-        // Show some error
-      }
-    });
-
-    // On success, we should be able to receive notifications
-    PushNotifications.addListener('registration',
-      (token: Token) => {
-        alert('Push registration success, token: ' + token.value);
-      }
-    );
-
-    // Some issue with our setup and push will not work
-    PushNotifications.addListener('registrationError',
-      (error: any) => {
-        alert('Error on registration: ' + JSON.stringify(error));
-      }
-    );
-
-    // Show us the notification payload if the app is open on our device
-    PushNotifications.addListener('pushNotificationReceived',
-      (notification: PushNotificationSchema) => {
-        alert('Push received: ' + JSON.stringify(notification));
-      }
-    );
-
-    // Method called when tapping on a notification
-    PushNotifications.addListener('pushNotificationActionPerformed',
-      (notification: ActionPerformed) => {
-        alert('Push action performed: ' + JSON.stringify(notification));
-      }
-    );
   }
 
   logout() {
