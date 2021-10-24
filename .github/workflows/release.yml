@@ -36,7 +36,7 @@ jobs:
       with:
         node-version: 14.x
     - run: npm ci
-    - run: npm run build --configuration=production-fr --output-path=dist
+    - run: npm run build --configuration=production-fr
 
   build-android:
     needs: build
@@ -106,8 +106,8 @@ jobs:
     - name: Install node modules
       run: npm install
     - run: npm ci
-    - run: npm run build --configuration=production-fr --output-path=dist
-    - run: tar czf dist.tar.gz dist
+    - run: npm run build --configuration=production-fr
+    - run: tar czf www.tar.gz www
     - name: Upload dist
       id: upload-dist
       uses: actions/upload-release-asset@v1
@@ -115,7 +115,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ github.workspace }}/dist.tar.gz
+        asset_path: ${{ github.workspace }}/www.tar.gz
         asset_name: les-sagas-mp3.tar.gz
         asset_content_type: application/gzip
     - name: Use coturiv/setup-ionic
