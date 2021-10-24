@@ -36,7 +36,7 @@ jobs:
       with:
         node-version: 14.x
     - run: npm ci
-    - run: npm run build -- --configuration production-fr --output-path=dist
+    - run: npm run build --configuration production-fr --output-path=dist
 
   build-android:
     needs: build
@@ -106,7 +106,7 @@ jobs:
     - name: Install node modules
       run: npm install
     - run: npm ci
-    - run: npm run build -- --configuration production-fr --output-path=dist
+    - run: npm run build --configuration production-fr --output-path=dist
     - run: tar czf dist.tar.gz dist
     - name: Upload dist
       id: upload-dist
