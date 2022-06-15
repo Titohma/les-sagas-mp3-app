@@ -37,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'sagas/:id/seasons',
-    loadChildren: () => import('./pages/sagas/list-episodes/list-episodes.module').then( m => m.ListSeasonsPageModule)
+    loadChildren: () => import('./pages/sagas/list-episodes/list-episodes.module').then( m => m.ListEpisodesPageModule)
   },
   {
     path: 'sagas/:saga/episode/:episode',

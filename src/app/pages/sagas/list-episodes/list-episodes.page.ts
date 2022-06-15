@@ -16,14 +16,14 @@ import { SeasonService } from 'src/app/services/seasons/season.service';
   templateUrl: './list-episodes.page.html',
   styleUrls: ['./list-episodes.page.scss'],
 })
-export class ListSeasonsPage implements OnInit {
+export class ListEpisodesPage implements OnInit {
 
   public item: Saga = new Saga();
 
   constructor(
     private activatedRoute: ActivatedRoute,
     public loadingController: LoadingController,
-    private authService: AuthService,
+    public authService: AuthService,
     public configService: ConfigService,
     private episodeService: EpisodesService,
     private sagaService: SagaService,

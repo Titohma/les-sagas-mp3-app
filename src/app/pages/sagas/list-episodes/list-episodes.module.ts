@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ListSeasonsPageRoutingModule } from './list-episodes-routing.module';
+import { ListEpisodesPageRoutingModule } from './list-episodes-routing.module';
 
-import { ListSeasonsPage } from './list-episodes.page';
+import { ListEpisodesPage } from './list-episodes.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ListSeasonsPageRoutingModule
+    ListEpisodesPageRoutingModule
   ],
-  declarations: [ListSeasonsPage]
+  declarations: [ListEpisodesPage]
 })
-export class ListSeasonsPageModule {}
+export class ListEpisodesPageModule {}
