@@ -34,7 +34,17 @@ const routes: Routes = [
   {
     path: 'sync',
     loadChildren: () => import('./pages/admin/sync/sync.module').then( m => m.SyncPageModule)
+  },
+  {
+    path: 'sagas/:id/seasons',
+    loadChildren: () => import('./pages/sagas/list-episodes/list-episodes.module').then( m => m.ListSeasonsPageModule)
+  },
+  {
+    path: 'sagas/:saga/episode/:episode',
+    loadChildren: () => import('./pages/sagas/play-episode/play-episode.module').then( m => m.PlayEpisodePageModule)
   }
+
+
 ];
 
 @NgModule({

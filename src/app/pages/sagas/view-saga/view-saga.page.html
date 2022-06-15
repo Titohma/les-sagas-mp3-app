@@ -24,6 +24,9 @@
         <ion-img class="cover" [src]="coverUrl()"></ion-img>
     </div>
     <ion-list>
+        <ion-list-header>
+          <ion-label>Informations</ion-label>
+        </ion-list-header>
         <ion-item lines="none">
             <ion-icon slot="start" name="person"></ion-icon>
             <span *ngFor="let author of item.authors; let isLast=last">
@@ -66,16 +69,15 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-        <div *ngIf="item.seasonsRef.length > 0">
-            <ion-list-header>
-                <ion-label>Saisons</ion-label>
-            </ion-list-header>
-            <ion-item *ngFor="let season of item.seasons">
-                <ion-label>
-                    <h2>Saison {{ season.number }} {{ season.name }}</h2>
-                </ion-label>
-            </ion-item>
-        </div>
+        <ion-list-header>
+          <ion-label>Episodes</ion-label>
+        </ion-list-header>
+        <ion-item routerLink="/sagas/{{ item.id }}/seasons" routerDirection="forward" color="primary">
+            <ion-icon slot="start" name="caret-forward-circle-outline"></ion-icon>
+            <ion-label>
+                Voir les épisodes
+            </ion-label>
+        </ion-item>
     </ion-list>
 
 </ion-content>

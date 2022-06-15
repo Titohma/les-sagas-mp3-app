@@ -1,9 +1,11 @@
 import { SeasonModel } from '../models/season.model';
+import { Episode } from './episode';
 import { Saga } from './saga';
 
 export class Season extends SeasonModel {
     
     saga: Saga;
+    episodes: Episode[] = [];
 
     static fromModel(model: SeasonModel): Season {
         var entity = new Season();
