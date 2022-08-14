@@ -25,7 +25,7 @@
       <ion-range #slider min="0" 
         [max]="state?.duration" 
         [value]="!sliderBeingUpdated ? state?.currentTime : 0"
-        (ionKnobMoveStart)="ionKnobMoveStart($event)"
+        (ionKnobMoveStart)="ionKnobMoveStart()"
         (ionKnobMoveEnd)="ionKnobMoveEnd($event)"
         [disabled]="state?.error || episode === undefined"></ion-range>
       <p>{{ state?.readableCurrentTime }} / {{ state?.readableDuration }}</p>

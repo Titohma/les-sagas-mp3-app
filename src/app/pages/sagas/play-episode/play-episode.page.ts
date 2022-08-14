@@ -23,22 +23,22 @@ export class PlayEpisodePage implements OnInit {
   public saga: Saga = new Saga();
   public episode: Episode = new Episode();
   state: StreamState;
-  
+
   sliderBeingUpdated = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     public loadingController: LoadingController,
     public audioService: AudioService,
-    private authService: AuthService,
+    public authService: AuthService,
     public configService: ConfigService,
     private sagaService: SagaService,
     private episodeService: EpisodesService,
     private fileService: FileService) {
-      this.audioService.getState().subscribe(state => {
-        this.state = state;
-      });
-    }
+    this.audioService.getState().subscribe(state => {
+      this.state = state;
+    });
+  }
 
 
   ngOnInit() {
@@ -56,7 +56,7 @@ export class PlayEpisodePage implements OnInit {
               this.episode = Episode.fromModel(data);
               this.fileService.getById(this.episode.fileRef)
                 .subscribe(data => {
-                  if(data !== null) {
+                  if (data !== null) {
                     this.episode.file = File.fromModel(data);
                     this.playStream(this.episodeUrl());
                   }
@@ -68,7 +68,7 @@ export class PlayEpisodePage implements OnInit {
   }
 
   playStream(url) {
-    this.audioService.playStream(url).subscribe(() => {});
+    this.audioService.playStream(url).subscribe(() => { });
   }
 
   play() {
@@ -100,8 +100,16 @@ export class PlayEpisodePage implements OnInit {
     return false;
   }
 
+  previous() {
+    return false;
+  }
+
+  next() {
+    return false;
+  }
+
   coverUrl(): string {
-    if(this.saga.coverUrl) {
+    if (this.saga.coverUrl) {
       return this.configService.get('appUrl') + this.saga.coverUrl;
     } else {
       return '';

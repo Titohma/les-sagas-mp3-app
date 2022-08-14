@@ -32,7 +32,7 @@ export class EditEpisodePage implements OnInit {
     private fb: FormBuilder,
     public loadingController: LoadingController,
     public navCtrl: NavController,
-    private authService: AuthService,
+    public authService: AuthService,
     public configService: ConfigService,
     private episodeService: EpisodesService,
     private fileService: FileService,
