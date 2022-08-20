@@ -41,7 +41,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Fichier audio</ion-label>
-        <ion-input class="fileUpload" type="file" formControlName="file" (change)="onFileChange($event)"></ion-input>
+        <ion-input class="fileUpload" type="file" formControlName="file" (change)="onFileChange($event)">{{ fileSource }}</ion-input>
       </ion-item>
 
     </ion-list>

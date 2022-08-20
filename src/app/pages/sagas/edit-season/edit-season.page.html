@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button routerDirection="backward" *ngIf="authService.currentTokenValue" type="submit" (click)="save()">
+        <ion-icon name="save"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ season.title }}</ion-title>
+    <ion-title *ngIf="season.name === null || season.name === ''">
+      Saison {{ season.number }}
+    </ion-title>
+    <ion-title *ngIf="season.name !== null && season.name !== ''">
+      {{ season.name }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="seasonForm" novalidate>
+    <ion-list lines="full" class="ion-no-margin">
+      <ion-list-header lines="full">
+        <ion-label>Informations</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="floating">Numéro</ion-label>
+        <ion-input type="string" value="{{ season.number }}" formControlName="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nom</ion-label>
+        <ion-input type="string" value="{{ season.name }}" formControlName="name"></ion-input>
+      </ion-item>
+
+    </ion-list>
+  </form>
+</ion-content>

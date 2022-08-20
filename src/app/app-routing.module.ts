@@ -37,18 +37,20 @@ const routes: Routes = [
   },
   {
     path: 'sagas/:sagaId/seasons/:seasonId',
-    loadChildren: () => import('./pages/sagas/list-episodes/list-episodes.module').then( m => m.ListEpisodesPageModule)
+    loadChildren: () => import('./pages/sagas/episodes/list-episodes/list-episodes.module').then( m => m.ListEpisodesPageModule)
+  },
+  {
+    path: 'sagas/:sagaId/seasons/:seasonId/edit',
+    loadChildren: () => import('./pages/sagas/edit-season/edit-season.module').then( m => m.EditSeasonPageModule)
   },
   {
     path: 'sagas/:saga/episode/:episode',
-    loadChildren: () => import('./pages/sagas/play-episode/play-episode.module').then( m => m.PlayEpisodePageModule)
+    loadChildren: () => import('./pages/sagas/episodes/play-episode/play-episode.module').then( m => m.PlayEpisodePageModule)
   },
   {
     path: 'sagas/:saga/episode/:episode/edit',
-    loadChildren: () => import('./pages/sagas/edit-episode/edit-episode.module').then( m => m.EditEpisodePageModule)
+    loadChildren: () => import('./pages/sagas/episodes/edit-episode/edit-episode.module').then( m => m.EditEpisodePageModule)
   }
-
-
 
 ];
 
