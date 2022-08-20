@@ -72,10 +72,17 @@
         </ion-list-header>
         <ion-item *ngFor="let season of item.seasons" routerLink="/sagas/{{ item.id }}/seasons/{{ season.id }}"
             routerDirection="forward">
+            <ion-label *ngIf="season.name === null || season.name === ''">
+                Saison {{ season.number }}
+            </ion-label>
+            <ion-label *ngIf="season.name !== null && season.name !== ''">
+                {{ season.name }}
+            </ion-label>
+        </ion-item>
+        <ion-item button="true" (click)="addSeason()" *ngIf="authService.currentTokenValue">
             <ion-label>
-                {{ season.name ?? 'Saison ' + season.number }}
+                < Ajouter une saison >
             </ion-label>
         </ion-item>
     </ion-list>
-
 </ion-content>

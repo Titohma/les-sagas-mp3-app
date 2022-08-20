@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingController, NavController, ToastController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
 import { Episode } from 'src/app/entities/episode';
 import { Saga } from 'src/app/entities/saga';
@@ -26,6 +26,7 @@ export class EditEpisodePage implements OnInit {
 
   episodeForm: FormGroup;
   attemptedSubmit = false;
+  fileSource = ''
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -64,6 +65,9 @@ export class EditEpisodePage implements OnInit {
           let seasons = this.seasonService.getAllByIds(data.seasonsRef);
           forkJoin([episode, seasons]).subscribe(results => {
             this.episode = Episode.fromModel(results[0]);
+            if(this.episode.fileRef) {
+              this.fileSource = "audio.mp3";
+            }
             this.saga.seasons = Season.fromModels(results[1]);
             loading.dismiss();
           });
@@ -129,11 +133,11 @@ export class EditEpisodePage implements OnInit {
   onFileChange(event) {  
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      console.log(file);
       if(file.size <= this.fileService.maxFileSize) {
         this.episodeForm.patchValue({
           fileSource: file
         });
+        this.fileSource = file.name;
       }
     }
   }

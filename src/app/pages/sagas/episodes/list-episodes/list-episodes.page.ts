@@ -4,7 +4,6 @@ import { ActionSheetController, LoadingController } from '@ionic/angular';
 import { Episode } from 'src/app/entities/episode';
 import { Saga } from 'src/app/entities/saga';
 import { Season } from 'src/app/entities/season';
-import { SeasonModel } from 'src/app/models/season.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { EpisodesService } from 'src/app/services/episodes/episodes.service';

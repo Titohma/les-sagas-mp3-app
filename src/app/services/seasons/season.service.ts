@@ -25,4 +25,7 @@ export class SeasonService {
     return this.http.post<SeasonModel>(`${this.configService.get('apiUrl')}/season`, season);
   }
 
+  update(season: SeasonModel) {
+    return this.http.put<SeasonModel>(`${this.configService.get('apiUrl')}/season`, season);
+  }
 }
