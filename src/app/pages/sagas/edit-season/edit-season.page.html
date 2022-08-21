@@ -9,7 +9,6 @@
         <ion-icon name="save"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{ season.title }}</ion-title>
     <ion-title *ngIf="season.name === null || season.name === ''">
       Saison {{ season.number }}
     </ion-title>
@@ -27,7 +26,7 @@
       </ion-list-header>
       <ion-item>
         <ion-label position="floating">Numéro</ion-label>
-        <ion-input type="string" value="{{ season.number }}" formControlName="number"></ion-input>
+        <ion-input type="number" value="{{ season.number }}" formControlName="number"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Nom</ion-label>
