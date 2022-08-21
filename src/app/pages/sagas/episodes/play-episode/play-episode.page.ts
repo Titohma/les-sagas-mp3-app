@@ -117,6 +117,10 @@ export class PlayEpisodePage implements OnInit {
   }
 
   episodeUrl(): string {
-    return this.configService.get('apiUrl') + "/files/audio" + this.episode.file.url;
+    if(this.episode.file.url.startsWith("http")) {
+      return this.episode.file.url;
+    } else {
+      return this.configService.get('apiUrl') + "/files/audio" + this.episode.file.url;
+    }
   }
 }

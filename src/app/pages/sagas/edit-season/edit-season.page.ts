@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingController, NavController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
@@ -34,7 +34,7 @@ export class EditSeasonPage implements OnInit {
     public sagaService: SagaService,
     public seasonService: SeasonService) {
     this.seasonForm = this.fb.group({
-      number: [''],
+      number: [0, [Validators.required]],
       name: ['']
     });
   }
