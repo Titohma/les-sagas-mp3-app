@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SagaModel } from 'src/app/models/saga.model';
+import { SagaModel } from 'src/app/models/saga/saga.model';
 import { DataPage } from 'src/app/models/pagination/data.page';
 import { ConfigService } from '../config/config.service';
 
@@ -28,6 +28,10 @@ export class SagaService {
 
   search(search: string): Observable<SagaModel[]> {
     return this.http.get<SagaModel[]>(`${this.configService.get('apiUrl')}/saga?search=${search}`);
+  }
+
+  create(saga: SagaModel) {
+    return this.http.post<SagaModel>(`${this.configService.get('apiUrl')}/saga`, saga);
   }
 
   uploadPdf(file): Observable<SagaModel> {

@@ -5,6 +5,12 @@
             <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-title>{{ item.title }}</ion-title>
+        <ion-buttons slot="primary">
+          <ion-button routerLink="/sagas/{{ item.id }}/edit" routerDirection="forward"
+            *ngIf="authService.currentTokenValue">
+            <ion-icon name="pencil"></ion-icon>
+          </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content>
