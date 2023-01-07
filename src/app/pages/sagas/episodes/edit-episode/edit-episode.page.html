@@ -5,7 +5,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="primary">
-      <ion-button routerDirection="backward" *ngIf="authService.currentTokenValue" type="submit" (click)="save()">
+      <ion-button routerDirection="backward" *ngIf="authService.currentTokenValue.token != ''" type="submit" (click)="save()">
         <ion-icon name="save"></ion-icon>
       </ion-button>
     </ion-buttons>
