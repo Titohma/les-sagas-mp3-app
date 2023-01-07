@@ -31,8 +31,8 @@ export class ListEpisodesPage implements OnInit {
     private seasonService: SeasonService) { }
 
   ngOnInit() {
-    var sagaId: number = +this.activatedRoute.snapshot.paramMap.get('sagaId');
-    var seasonId: number = +this.activatedRoute.snapshot.paramMap.get('seasonId');
+    var sagaId: number = +this.activatedRoute.snapshot.paramMap.get('sagaId')!;
+    var seasonId: number = +this.activatedRoute.snapshot.paramMap.get('seasonId')!;
     this.loadingController.create({
       message: 'Téléchargement...'
     }).then((loading) => {

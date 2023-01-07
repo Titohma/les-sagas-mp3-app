@@ -1,4 +1,4 @@
-package fr.lessagasmp3.app;
+package io.ionic.starter;
 
 import com.getcapacitor.BridgeActivity;
 

@@ -22,7 +22,15 @@ export class PlayEpisodePage implements OnInit {
 
   public saga: Saga = new Saga();
   public episode: Episode = new Episode();
-  state: StreamState;
+  state: StreamState = {
+    playing: false,
+    readableCurrentTime: '',
+    readableDuration: '',
+    duration: undefined,
+    currentTime: undefined,
+    canplay: false,
+    error: false,
+  };
 
   sliderBeingUpdated = false;
 
@@ -42,8 +50,8 @@ export class PlayEpisodePage implements OnInit {
 
 
   ngOnInit() {
-    var sagaId: number = +this.activatedRoute.snapshot.paramMap.get('saga');
-    var episodeId: number = +this.activatedRoute.snapshot.paramMap.get('episode');
+    var sagaId: number = +this.activatedRoute.snapshot.paramMap.get('saga')!;
+    var episodeId: number = +this.activatedRoute.snapshot.paramMap.get('episode')!;
     this.loadingController.create({
       message: 'Téléchargement...'
     }).then((loading) => {
@@ -67,7 +75,7 @@ export class PlayEpisodePage implements OnInit {
     });
   }
 
-  playStream(url) {
+  playStream(url: string) {
     this.audioService.playStream(url).subscribe(() => { });
   }
 
@@ -87,7 +95,7 @@ export class PlayEpisodePage implements OnInit {
     this.sliderBeingUpdated = true;
   }
 
-  ionKnobMoveEnd(event) {
+  ionKnobMoveEnd(event: any) {
     this.audioService.seekTo(event.detail.value);
     this.sliderBeingUpdated = false;
   }

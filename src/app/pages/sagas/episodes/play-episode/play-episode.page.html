@@ -23,18 +23,18 @@
     </ion-card-header>
     <div *ngIf="state.canplay">
       <ion-range #slider min="0" 
-        [max]="state?.duration" 
-        [value]="!sliderBeingUpdated ? state?.currentTime : 0"
+        [max]="state.duration" 
+        [value]="!sliderBeingUpdated ? state.currentTime : 0"
         (ionKnobMoveStart)="ionKnobMoveStart()"
         (ionKnobMoveEnd)="ionKnobMoveEnd($event)"
-        [disabled]="state?.error || episode === undefined"></ion-range>
-      <p>{{ state?.readableCurrentTime }} / {{ state?.readableDuration }}</p>
+        [disabled]="state.error || episode === undefined"></ion-range>
+      <p>{{ state.readableCurrentTime }} / {{ state.readableDuration }}</p>
     </div>
     <div class="flex_box">
       <ion-button shape="round" (click)="previous()" [disabled]="isFirstPlaying()">
         <ion-icon slot="icon-only" name="play-back"></ion-icon>
       </ion-button>
-      <ion-button shape="round" (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing && state.canplay">
+      <ion-button shape="round" (click)="play()" [disabled]="state.error" *ngIf="!state?.playing && state.canplay">
         <ion-icon slot="icon-only" name="play"></ion-icon>
       </ion-button>
       <ion-button shape="round" (click)="pause()" *ngIf="state?.playing">

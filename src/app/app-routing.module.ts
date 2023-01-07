@@ -9,55 +9,55 @@ const routes: Routes = [
   },
   {
     path: 'sagas',
-    loadChildren: () => import('./pages/sagas/list-sagas/list-sagas.module').then( m => m.ListSagasPageModule)
+    loadChildren: () => import('./pages/sagas/list-sagas/list-sagas.module').then(m => m.ListSagasPageModule)
   },
   {
     path: 'sagas/:id',
-    loadChildren: () => import('./pages/sagas/view-saga/view-saga.module').then( m => m.ViewSagaPageModule)
+    loadChildren: () => import('./pages/sagas/view-saga/view-saga.module').then(m => m.ViewSagaPageModule)
   },
   {
     path: 'news',
-    loadChildren: () => import('./pages/news/list-news/list-news.module').then( m => m.ListNewsPageModule)
+    loadChildren: () => import('./pages/news/list-news/list-news.module').then(m => m.ListNewsPageModule)
   },
   {
     path: 'news/:id',
-    loadChildren: () => import('./pages/news/view-news/view-news.module').then( m => m.ViewNewsPageModule)
+    loadChildren: () => import('./pages/news/view-news/view-news.module').then(m => m.ViewNewsPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'signup',
-    loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
+    loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupPageModule)
   },
   {
     path: 'sync',
-    loadChildren: () => import('./pages/admin/sync/sync.module').then( m => m.SyncPageModule)
+    loadChildren: () => import('./pages/admin/sync/sync.module').then(m => m.SyncPageModule)
   },
   {
     path: 'sagas/:sagaId/seasons/:seasonId',
-    loadChildren: () => import('./pages/sagas/episodes/list-episodes/list-episodes.module').then( m => m.ListEpisodesPageModule)
+    loadChildren: () => import('./pages/sagas/episodes/list-episodes/list-episodes.module').then(m => m.ListEpisodesPageModule)
   },
   {
     path: 'sagas/:sagaId/seasons/:seasonId/edit',
-    loadChildren: () => import('./pages/sagas/edit-season/edit-season.module').then( m => m.EditSeasonPageModule)
+    loadChildren: () => import('./pages/sagas/edit-season/edit-season.module').then(m => m.EditSeasonPageModule)
   },
   {
     path: 'sagas/:saga/episode/:episode',
-    loadChildren: () => import('./pages/sagas/episodes/play-episode/play-episode.module').then( m => m.PlayEpisodePageModule)
+    loadChildren: () => import('./pages/sagas/episodes/play-episode/play-episode.module').then(m => m.PlayEpisodePageModule)
   },
   {
     path: 'sagas/:saga/episode/:episode/edit',
-    loadChildren: () => import('./pages/sagas/episodes/edit-episode/edit-episode.module').then( m => m.EditEpisodePageModule)
+    loadChildren: () => import('./pages/sagas/episodes/edit-episode/edit-episode.module').then(m => m.EditEpisodePageModule)
   }
 
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

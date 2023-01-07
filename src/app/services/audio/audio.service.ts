@@ -36,11 +36,9 @@ export class AudioService {
     error: false,
   };
   
-  private stateChange: BehaviorSubject<StreamState> = new BehaviorSubject(
-    this.state
-  );
+  private stateChange: BehaviorSubject<StreamState> = new BehaviorSubject(this.state);
 
-  private streamObservable(url) {
+  private streamObservable(url: string) {
     return new Observable(observer => {
       // Play audio
       this.audioObj.src = url;
@@ -65,19 +63,19 @@ export class AudioService {
     });
   }
 
-  private addEvents(obj, events, handler) {
-    events.forEach(event => {
+  private addEvents(obj: any, events: any, handler: any) {
+    events.forEach((event: any) => {
       obj.addEventListener(event, handler);
     });
   }
 
-  private removeEvents(obj, events, handler) {
-    events.forEach(event => {
+  private removeEvents(obj: any, events: any, handler: any) {
+    events.forEach((event: any) => {
       obj.removeEventListener(event, handler);
     });
   }
   
-  playStream(url) {
+  playStream(url: string) {
     return this.streamObservable(url).pipe(takeUntil(this.stop$));
   }
   
@@ -90,10 +88,10 @@ export class AudioService {
   }
 
   stop() {
-    this.stop$.next();
+    this.stop$.next(0);
   }
 
-  seekTo(seconds) {
+  seekTo(seconds: number) {
     this.audioObj.currentTime = seconds;
   }
 

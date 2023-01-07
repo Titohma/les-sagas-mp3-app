@@ -13,7 +13,7 @@ export class SignupPage implements OnInit {
   signupForm: FormGroup;
   attemptedSubmit = false;
 
-  errorMessages = {
+  errorMessages: { [char: string]: string } = {
     required: '{$1} required',
     minlength: 'At least 6 characters required',
     email: 'Invalid email address'
@@ -32,7 +32,7 @@ export class SignupPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.currentTokenValue) {
+    if(this.authService.currentTokenValue.token != '') {
       this.navCtrl.navigateRoot('/news');
     }
   }

@@ -35,7 +35,7 @@ export class ViewSagaPage implements OnInit {
     private seasonService: SeasonService) { }
 
   ngOnInit() {
-    var itemId: number = +this.activatedRoute.snapshot.paramMap.get('id');
+    var itemId: number = +this.activatedRoute.snapshot.paramMap.get('id')!;
     this.loadingController.create({
       message: 'Téléchargement...'
     }).then((loading) => {

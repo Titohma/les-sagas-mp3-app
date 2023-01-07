@@ -15,8 +15,16 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<UserModel>;
 
   constructor(private http: HttpClient, private configService: ConfigService) {
-    this.currentTokenSubject = new BehaviorSubject<JwtResponseModel>(JSON.parse(localStorage.getItem('jwt')));
-    this.currentUserSubject = new BehaviorSubject<UserModel>(JSON.parse(localStorage.getItem('user')));
+    if(localStorage.getItem('jwt') != '') {
+      this.currentTokenSubject = new BehaviorSubject<JwtResponseModel>(JSON.parse(localStorage.getItem('jwt')!!));
+    } else {
+      this.currentTokenSubject = new BehaviorSubject<JwtResponseModel>(new JwtResponseModel());
+    }
+    if(localStorage.getItem('user') != '') {
+      this.currentUserSubject = new BehaviorSubject<UserModel>(JSON.parse(localStorage.getItem('user')!!));
+    } else {
+      this.currentUserSubject = new BehaviorSubject<UserModel>(new UserModel());
+    }
   }
   
   public get currentTokenValue(): JwtResponseModel {
@@ -68,10 +76,10 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.setItem('jwt', null);
-    this.currentTokenValue = null;
-    localStorage.setItem('user', null);
-    this.currentUserValue = null;
+    localStorage.setItem('jwt', '');
+    this.currentTokenValue = new JwtResponseModel();
+    localStorage.setItem('user', '');
+    this.currentUserValue = new UserModel();
   }
 
 }

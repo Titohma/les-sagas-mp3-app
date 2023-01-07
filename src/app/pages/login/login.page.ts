@@ -14,10 +14,10 @@ export class LoginPage implements OnInit {
   isLogin = false;
   attemptedSubmit = false;
 
-  errorMessages = {
-    required: '{$1} required',
-    minlength: 'At least 6 characters required',
-    email: 'Invalid email address'
+  errorMessages: { [char: string]: string } = {
+    'required': '{$1} required',
+    'minlength': 'At least 6 characters required',
+    'email': 'Invalid email address'
   };
 
   constructor(
@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.currentTokenValue) {
+    if(this.authService.currentTokenValue.token != '') {
       this.navCtrl.navigateRoot('/news');
     }
   }

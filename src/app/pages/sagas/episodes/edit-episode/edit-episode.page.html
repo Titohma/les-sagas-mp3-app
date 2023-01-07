@@ -23,7 +23,7 @@
         <ion-label position="floating">Saison</ion-label>
         <ion-select value="{{ episode.seasonRef }}" formControlName="seasonRef">
           <ion-select-option *ngFor="let season of saga.seasons" value="{{ season.id }}">
-            {{ season.name ?? 'Saison ' + season.number }}
+            {{ season.name === '' ? 'Saison ' + season.number : season.name }}
           </ion-select-option>
         </ion-select>
       </ion-item>

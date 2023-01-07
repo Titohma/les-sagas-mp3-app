@@ -30,7 +30,7 @@ export class SagaService {
     return this.http.get<SagaModel[]>(`${this.configService.get('apiUrl')}/saga?search=${search}`);
   }
 
-  uploadPdf(file): Observable<SagaModel> {
+  uploadPdf(file: any): Observable<SagaModel> {
     let formData = new FormData();
     formData.append("file", file, file.name);
     return this.http.post<SagaModel>(`${this.configService.get('apiUrl')}/saga/pdf`, formData);

@@ -40,8 +40,8 @@ export class EditSeasonPage implements OnInit {
   }
 
   ngOnInit() {
-    var sagaId: number = +this.activatedRoute.snapshot.paramMap.get('sagaId');
-    var seasonId: number = +this.activatedRoute.snapshot.paramMap.get('seasonId');
+    var sagaId: number = +this.activatedRoute.snapshot.paramMap.get('sagaId')!;
+    var seasonId: number = +this.activatedRoute.snapshot.paramMap.get('seasonId')!;
     this.loadingController.create({
       message: 'Téléchargement...'
     }).then((loading) => {

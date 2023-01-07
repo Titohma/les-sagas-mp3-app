@@ -4,8 +4,8 @@ import { Season } from './season';
 
 export class Episode extends EpisodeModel {
     
-    season: Season;
-    file: File;
+    season: Season = new Season();
+    file: File = new File();
 
     static fromModel(model: EpisodeModel): Episode {
         var entity = new Episode();

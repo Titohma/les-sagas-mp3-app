@@ -37,7 +37,7 @@ export class SyncPage implements OnInit {
     });
   }
 
-  doRefresh(event) {
+  doRefresh(event: any) {
     let syncNewsRequest = this.eventLogService.getLatestByName("SYNC_NEWS_START");
     let syncSagasRequest = this.eventLogService.getLatestByName("SYNC_SAGAS_START");
     forkJoin([syncNewsRequest, syncSagasRequest]).subscribe(results => {

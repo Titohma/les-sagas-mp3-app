@@ -43,7 +43,8 @@ export class ListSagasPage implements OnInit {
     });
   }
 
-  search(searchInput) {
+  search(event: Event) {
+    let searchInput = (event.target as HTMLInputElement).value;
     if (searchInput.length > 2) {
       this.isSearchRunning = true;
       this.sagaService.search(searchInput)
@@ -63,7 +64,7 @@ export class ListSagasPage implements OnInit {
       });
   }
 
-  loadData(event) {
+  loadData(event: any) {
     this.numPage++;
     this.sagaService.getPaginated(this.numPage, this.sizePage)
       .subscribe(res => {
@@ -77,7 +78,7 @@ export class ListSagasPage implements OnInit {
       });
   }
 
-  createSagaFromPdf(event) {
+  createSagaFromPdf(event: any) {
     const file = event.target.files[0];
     this.sagaService.uploadPdf(file)
       .subscribe(res => {
@@ -89,7 +90,10 @@ export class ListSagasPage implements OnInit {
     items.forEach(item => {
       item.categories = []
       item.categoriesRef.forEach(categoryRef => {
-        item.categories.push(this.categories.find(result => result.id === categoryRef));
+        let result = this.categories.find(result => result.id === categoryRef);
+        if(result !== undefined) {
+          item.categories.push(result);
+        }
       });
     });
     return items;

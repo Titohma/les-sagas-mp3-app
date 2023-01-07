@@ -1,13 +1,9 @@
 {
 	"appId": "fr.lessagasmp3.app",
-	"appName": "Les Sagas MP3",
-	"bundledWebRuntime": false,
-	"npmClient": "npm",
+	"appName": "les-sagas-mp3",
 	"webDir": "www",
+	"bundledWebRuntime": false,
 	"plugins": {
-		"SplashScreen": {
-			"launchShowDuration": 0
-		},
 		"PushNotifications": {
 			"presentationOptions": [
 				"badge",
@@ -15,6 +11,5 @@
 				"alert"
 			]
 		}
-	},
-	"cordova": {}
+	}
 }

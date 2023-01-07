@@ -17,7 +17,7 @@ export class FileService {
     return this.http.get<FileModel>(`${this.configService.get('apiUrl')}/file/${id}`);
   }
   
-  upload(file, directory, name): Observable<FileModel> {
+  upload(file: any, directory: string, name: string): Observable<FileModel> {
     let formData = new FormData();
     formData.append("file", file, file.name);
     formData.append("directory", directory);

@@ -52,8 +52,8 @@ export class EditEpisodePage implements OnInit {
 
 
   ngOnInit() {
-    var sagaId: number = +this.activatedRoute.snapshot.paramMap.get('saga');
-    var episodeId: number = +this.activatedRoute.snapshot.paramMap.get('episode');
+    var sagaId: number = +this.activatedRoute.snapshot.paramMap.get('saga')!;
+    var episodeId: number = +this.activatedRoute.snapshot.paramMap.get('episode')!;
     this.loadingController.create({
       message: 'Téléchargement...'
     }).then((loading) => {
@@ -130,7 +130,7 @@ export class EditEpisodePage implements OnInit {
     }
   }
 
-  onFileChange(event) {  
+  onFileChange(event: any) {  
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       if(file.size <= this.fileService.maxFileSize) {

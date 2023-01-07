@@ -4,7 +4,7 @@ import { Saga } from './saga';
 
 export class Season extends SeasonModel {
     
-    saga: Saga;
+    saga: Saga = new Saga();
     episodes: Episode[] = [];
 
     static fromModel(model: SeasonModel): Season {
