@@ -47,6 +47,10 @@ export class AuthService {
     this.currentUserSubject.next(user);
   }
 
+  public isLoggedIn(): boolean {
+    return this.currentTokenValue != null && this.currentTokenValue.token != '';
+  }
+
   signup(email: string, password: string) : Observable<void> {
     var jwtRequest = new JwtRequestModel();
     jwtRequest.email = email;

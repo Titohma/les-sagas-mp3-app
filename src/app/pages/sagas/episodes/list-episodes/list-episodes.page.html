@@ -7,7 +7,7 @@
     <ion-title>{{ saga.title }}</ion-title>
     <ion-buttons slot="primary">
       <ion-button routerLink="/sagas/{{ saga.id }}/seasons/{{ season.id }}/edit" routerDirection="forward"
-        *ngIf="authService.currentTokenValue.token != ''">
+        *ngIf="authService.isLoggedIn()">
         <ion-icon name="pencil"></ion-icon>
       </ion-button>
     </ion-buttons>

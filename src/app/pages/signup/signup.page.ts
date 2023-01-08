@@ -32,7 +32,7 @@ export class SignupPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.currentTokenValue.token != '') {
+    if(this.authService.isLoggedIn()) {
       this.navCtrl.navigateRoot('/news');
     }
   }

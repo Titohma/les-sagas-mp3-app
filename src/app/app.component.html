@@ -12,7 +12,7 @@
                   </ion-menu-toggle>
               </ion-list>
 
-              <ion-list *ngIf="authService.currentTokenValue.token != ''" lines="none">
+              <ion-list *ngIf="authService.isLoggedIn()" lines="none">
                   <ion-list-header>
                       Compte : {{ authService.currentUserValue.username }}
                   </ion-list-header>
@@ -35,7 +35,7 @@
 
               </ion-list>
 
-              <ion-list *ngIf="authService.currentTokenValue.token == ''" lines="none">
+              <ion-list *ngIf="!authService.isLoggedIn()" lines="none">
                   <ion-list-header>
                       Espace membre
                   </ion-list-header>
