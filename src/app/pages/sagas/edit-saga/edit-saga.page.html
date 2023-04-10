@@ -24,7 +24,15 @@
         <ion-input type="string" value="{{ saga.title }}" formControlName="title"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Status</ion-label>
+        <ion-label position="floating">URL</ion-label>
+        <ion-input value="{{ saga.url }}" formControlName="url"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">URL Wiki</ion-label>
+        <ion-input value="{{ saga.urlWiki }}" formControlName="urlWiki"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Etat</ion-label>
         <ion-input value="{{ saga.status }}" formControlName="status"></ion-input>
       </ion-item>
       <ion-item>
@@ -36,7 +44,11 @@
         <ion-textarea value="{{ saga.origin }}" formControlName="origin"></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Awards</ion-label>
+        <ion-label position="floating">Génèse</ion-label>
+        <ion-textarea value="{{ saga.genese }}" formControlName="genese"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Récompenses</ion-label>
         <ion-textarea value="{{ saga.awards }}" formControlName="awards"></ion-textarea>
       </ion-item>
       <ion-item>

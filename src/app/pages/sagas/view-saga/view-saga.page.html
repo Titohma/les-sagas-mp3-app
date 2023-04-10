@@ -14,7 +14,8 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div class="background" [ngStyle]="{'background-image': bannerUrl()}">
+    <div class="background" [ngStyle]="bannerUrl()">
+
         <div class="background-left-buttons">
             <ion-button *ngIf="item.url" color="light" href="{{ item.url }}">
                 <ion-icon slot="start" name="globe"></ion-icon>
