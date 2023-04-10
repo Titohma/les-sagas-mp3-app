@@ -88,7 +88,7 @@ export class ListSagasPage implements OnInit {
       });
   }
 
-  createSagaFromPdf(event) {
+  createSagaFromPdf(event: any) {
     const file = event.target.files[0];
     this.sagaService.uploadPdf(file)
       .subscribe(res => {

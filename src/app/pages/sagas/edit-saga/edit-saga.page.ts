@@ -46,7 +46,7 @@ export class EditSagaPage implements OnInit {
     }
 
   ngOnInit() {
-    var sagaId: number = +this.activatedRoute.snapshot.paramMap.get('id');
+    var sagaId: number = +this.activatedRoute.snapshot.paramMap.get('id')!;
     this.loadingController.create({
       message: 'Téléchargement...'
     }).then((loading) => {
@@ -83,7 +83,7 @@ export class EditSagaPage implements OnInit {
     }
   }
 
-  onBannerChange(event) {  
+  onBannerChange(event : any) {  
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       if(file.size <= this.fileService.maxFileSize) {
@@ -95,7 +95,7 @@ export class EditSagaPage implements OnInit {
     }
   }
 
-  onCoverChange(event) {  
+  onCoverChange(event : any) {  
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       if(file.size <= this.fileService.maxFileSize) {
