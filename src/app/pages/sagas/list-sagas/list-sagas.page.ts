@@ -6,6 +6,7 @@ import { CategoryService } from 'src/app/services/categories/category.service';
 import { Category } from 'src/app/entities/category';
 import { Saga } from 'src/app/entities/saga';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { SagaModel } from 'src/app/models/saga/saga.model';
 
 @Component({
   selector: 'app-list-sagas',
@@ -78,7 +79,16 @@ export class ListSagasPage implements OnInit {
       });
   }
 
-  createSagaFromPdf(event: any) {
+  addSaga() {
+    var saga = new SagaModel();
+    saga.title = "Nouvelle saga";
+    this.sagaService.create(saga)
+      .subscribe(data => {
+        this.navCtrl.navigateForward("sagas/" + data.id)
+      });
+  }
+
+  createSagaFromPdf(event) {
     const file = event.target.files[0];
     this.sagaService.uploadPdf(file)
       .subscribe(res => {
